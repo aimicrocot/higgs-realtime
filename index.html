@@ -257,7 +257,7 @@ registerBtn.addEventListener('click', async () => {
     form.append('ref_text', refText);
     form.append('description', 'Мой голос');
 
-    const resp = await fetch('https://dry-heart-b317.nikanikanamename.workers.dev/v1/audio/voices', {
+    const resp = await fetch('https://microcot.microcot.workers.dev/v1/realtime/client_secrets', {
       method: 'POST',
       headers: { 'Authorization': `Bearer ${key}` },
       body: form
@@ -298,7 +298,7 @@ async function startCall(){
 
   try{
     // 1. mint ephemeral key
-    const eResp = await fetch('https://dry-heart-b317.nikanikanamename.workers.dev/v1/realtime/client_secrets', {
+    const eResp = await fetch('https://microcot.microcot.workers.dev/v1/realtime/client_secrets', {
       method:'POST',
       headers:{ 'Authorization': `Bearer ${key}`, 'Content-Type':'application/json' },
       body: JSON.stringify({ expires_after: { seconds: 3600 } })
