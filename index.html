@@ -327,7 +327,7 @@ async function startCall(){
         type: 'session.update',
         session: {
           model: 'higgs-realtime',
-          instructions: 'Speak naturally in the user's language, as if this were a phone call or a conversation. If the user assigns you a role or character, play that character.',
+          instructions: 'Speak naturally in the user's language, as if this were a phone call or a conversation, playing your character',
           audio: {
             output: { voice: voiceId, format: { type: 'audio/pcm', rate: 24000 } },
             input: {
