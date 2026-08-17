@@ -257,7 +257,7 @@ registerBtn.addEventListener('click', async () => {
     form.append('ref_text', refText);
     form.append('description', 'Мой голос');
 
-    const resp = await fetch('https://microcot.microcot.workers.dev/v1/audio/voices', {
+    const resp = await fetch('https://microcot.microcot.workers.dev/v1/realtime/client_secrets', {
       method: 'POST',
       headers: { 'Authorization': `Bearer ${key}` },
       body: form
@@ -327,7 +327,7 @@ async function startCall(){
         type: 'session.update',
         session: {
           model: 'higgs-realtime',
-          instructions: "Speak naturally in the user's language, as if this were a phone call or a conversation, playing your character",
+          instructions: 'Speak naturally, as if this were a phone call or a conversation, playing your character",
           audio: {
             output: { voice: voiceId, format: { type: 'audio/pcm', rate: 24000 } },
             input: {
