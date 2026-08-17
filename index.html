@@ -188,6 +188,8 @@
       <div class="step-num">3</div>
       <div class="step-title">Разговор<span class="hint">Микрофон нужен только на время звонка</span></div>
     </div>
+    <label>Роль персонажа <span style="color:var(--dim); font-weight:400;">(необязательно)</span></label>
+    <textarea id="charRole" placeholder="Например: ты — саркастичный детектив из нуарного романа, отвечаешь коротко и с иронией"></textarea>
     <div class="stage">
       <div class="orb" id="orb"></div>
       <div class="status" id="callStatus">Готов к звонку</div>
@@ -208,6 +210,7 @@ const refAudioEl = $('refAudio'), refTextEl = $('refText');
 const registerBtn = $('registerBtn'), voiceMsg = $('voiceMsg');
 const fileLabel = $('fileLabel'), fileLabelText = $('fileLabelText');
 const callBtn = $('callBtn'), callStatus = $('callStatus'), callMsg = $('callMsg');
+const charRoleEl = $('charRole');
 const orb = $('orb'), transcriptEl = $('transcript');
 
 let voiceId = null;
@@ -323,11 +326,16 @@ async function startCall(){
     ]);
 
     ws.onopen = () => {
+      const baseInstructions = 'Speak naturally, one short sentence as if this were a phone call or a conversation, playing your character';
+      const charRole = charRoleEl.value.trim();
+      const instructions = charRole
+        ? `${baseInstructions}. Character role/persona to follow as a guideline: ${charRole}`
+        : baseInstructions;
       ws.send(JSON.stringify({
         type: 'session.update',
         session: {
           model: 'higgs-realtime',
-          instructions: 'Speak naturally, one short sentence as if this were a phone call or a conversation, playing your character',
+          instructions: instructions,
           audio: {
             output: { voice: voiceId, format: { type: 'audio/pcm', rate: 24000 } },
             input: {
