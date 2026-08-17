@@ -257,7 +257,7 @@ registerBtn.addEventListener('click', async () => {
     form.append('ref_text', refText);
     form.append('description', 'Мой голос');
 
-    const resp = await fetch('https://microcot.microcot.workers.dev/v1/realtime/client_secrets', {
+    const resp = await fetch('https://microcot.microcot.workers.dev/v1/audio/voices', {
       method: 'POST',
       headers: { 'Authorization': `Bearer ${key}` },
       body: form
